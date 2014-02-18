@@ -70,7 +70,7 @@ var nsq = require('nsq.js');
 // subscribe
 
 var reader = nsq.reader({
-  nsqd: ['0.0.0.0:4150'],
+  nsqd: [':4150'],
   maxInFlight: 1,
   maxAttempts: 5,
   topic: 'events',
@@ -95,7 +95,7 @@ reader.on('discard', function(msg){
 
 // publish
 
-var writer = nsq.writer({ port: 4150 });
+var writer = nsq.writer(':4150');
 
 writer.publish('events', 'foo');
 writer.publish('events', 'bar');

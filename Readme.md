@@ -102,6 +102,32 @@ writer.publish('events', 'bar');
 writer.publish('events', 'baz');
 ```
 
+## API
+
+### nsq.reader(options)
+
+  Create a reader:
+
+- `topic` topic name
+- `channel` channel name
+- `nsqd` array of nsqd addresses
+- `nsqlookupd` array of nsqlookupd addresses
+- `maxInFlight` max messages _per_ connection [1]
+- `maxAttempts` max attempts before discarding [5]
+
+ Events:
+
+- `message` (msg) incoming message
+- `discard` (msg) discarded message
+- `error` (err)
+
+### nsq.writer(options|address)
+
+  Create a writer:
+
+ - `port` number
+ - `host` name
+
 # License
 
   MIT

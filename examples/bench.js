@@ -9,10 +9,10 @@ var nsq = require('..');
 
 var reader = nsq.reader({
   nsqd: ['0.0.0.0:4150'],
+  topic: 'events',
+  channel: 'ingestion',
   maxInFlight: 1000
 });
-
-reader.subscribe('events', 'ingestion');
 
 var n = 0;
 reader.on('message', function(msg){

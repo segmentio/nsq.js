@@ -132,6 +132,24 @@ writer.publish('events', 'baz');
 
  Publish the given `message` to `topic`.
 
+## Message
+
+ A single message.
+
+### Message#finish([callback])
+
+  Mark message as complete.
+
+### Message#requeue([timeout], [callback])
+
+  Re-queue the message immediately, or with the
+  given `timeout` in milliseconds.
+
+### Message#touch([callback])
+
+  Reset the message's timeout, increasing the length
+  of time before NSQD considers it timed out.
+
 # License
 
   MIT

@@ -7,6 +7,7 @@
 
   - actually written in js :p
   - easier debugging via [debug()](https://github.com/visionmedia/debug) instrumentation
+  - native json message support
   - does not arbitrarily apply backoff on requeues
   - does not distribute max-in-flight
   - reconnection to dead nsqd nodes
@@ -130,7 +131,8 @@ writer.publish('events', 'baz');
 
 #### nsq.publish(topic, message)
 
- Publish the given `message` to `topic`.
+ Publish the given `message` to `topic` where `message`
+ may be a string, buffer, or object.
 
 ## Message
 
@@ -149,6 +151,10 @@ writer.publish('events', 'baz');
 
   Reset the message's timeout, increasing the length
   of time before NSQD considers it timed out.
+
+### Message#json()
+
+  Return parsed JSON object.
 
 # License
 

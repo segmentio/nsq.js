@@ -20,7 +20,7 @@ reader.on('message', function(msg){
   console.log(msg.id);
   setTimeout(function(){
     msg.finish();
-  }, 500);
+  }, 1500);
 });
 
 // publish

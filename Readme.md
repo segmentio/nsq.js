@@ -128,6 +128,10 @@ writer.publish('events', 'baz');
  - `port` number
  - `host` name
 
+#### nsq.publish(topic, message)
+
+ Publish the given `message` to `topic`.
+
 # License
 
   MIT

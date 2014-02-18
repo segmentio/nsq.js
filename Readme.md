@@ -1,18 +1,105 @@
 
-# name
+# nsq.js
 
-  description
+  JavaScript NSQ client WIP.
+
+## Features
+
+  - actually written in js :p
+  - easier debugging via [debug()](https://github.com/visionmedia/debug) instrumentation
+  - does not arbitrarily apply backoff on requeues
+  - does not distribute max-in-flight
+  - reconnection to dead nsqd nodes
 
 ## Installation
 
 ```
-$ npm install name
+$ npm install nsq.js
 ```
+
+## About
+
+### Debugging
+
+  The __DEBUG__ environment variable can be used to enable
+  traces within the module, for example all nsq debug() calls
+  except fo the framer:
+
+```
+$ DEBUG=nsq*,-nsq:framer node test
+
+nsq:reader connect nsqd 0.0.0.0:4150 events/ingestion [5] +0ms
+nsq:connection connect: 0.0.0.0:4150 V2 +0ms
+nsq:connection command: IDENTIFY null +2ms
+nsq:connection command: SUB ["events","ingestion"] +1ms
+nsq:connection command: RDY [5] +0ms
+nsq:connection connect: undefined:4150 V2 +0ms
+nsq:connection command: IDENTIFY null +1ms
+nsq:connection command: PUB ["events"] +0ms
+nsq:reconnect reset backoff +0ms
+nsq:reconnect reset backoff +1ms
+nsq:connection response OK +3ms
+nsq:connection response OK +0ms
+nsq:connection response OK +0ms
+```
+
+### Requeue backoff
+
+  The NSQD documentation recommends applying
+  backoff when requeueing implying that the
+  consumer is faulty, IMO this is a weird default,
+  and the opposite of what we need so it's not applied in
+  this client.
+
+### Max in-flight distribution
+
+  The NSQD documentation recommends attempting to
+  evenly distribute the max-in-flight __RDY__ count
+  to all connections, but only is this complicated to
+  enforce properly when connections are introduced, dropped,
+  overwhelmed, underwhelmed and so on - it introducsed a
+  non-deterministic behaviour. We don't need a strict
+  max-in-flight cap so this library does not implement this
+  behaviour (for now), when you pass `.maxInFlight` it is _per_ connection.
 
 ## Example
 
 ```js
+var nsq = require('nsq.js');
 
+// subscribe
+
+var reader = nsq.reader({
+  nsqd: ['0.0.0.0:4150'],
+  maxInFlight: 1,
+  maxAttempts: 5,
+  topic: 'events',
+  channel: 'ingestion'
+});
+
+reader.on('error', function(err){
+  console.log(err.stack);
+});
+
+reader.on('message', function(msg){
+  var body = msg.body.toString();
+  console.log('%s attempts=%s', body, msg.attempts);
+  msg.requeue(2000);
+});
+
+reader.on('discard', function(msg){
+  var body = msg.body.toString();
+  console.log('giving up on %s', body);
+  msg.finish();
+});
+
+// publish
+
+var writer = nsq.writer({ port: 4150 });
+
+writer.publish('events', 'foo');
+writer.publish('events', 'bar');
+writer.publish('events', 'baz');
 ```
 
 # License

@@ -1,4 +1,11 @@
 
+0.0.4 / 2014-02-19
+==================
+
+ * add Message#timeUntilTimeout()
+ * add feature negotiation
+ * add hostname for .short_id / .long_id
+
 0.0.3 / 2014-02-19
 ==================
 

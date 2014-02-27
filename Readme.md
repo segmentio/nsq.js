@@ -58,10 +58,13 @@ nsq:connection response OK +0ms
   evenly distribute the max-in-flight __RDY__ count
   to all connections, but only is this complicated to
   enforce properly when connections are introduced, dropped,
-  overwhelmed, underwhelmed and so on - it introducsed a
+  overwhelmed, underwhelmed and so on - it introduced a
   non-deterministic behaviour. We don't need a strict
   max-in-flight cap so this library does not implement this
   behaviour (for now), when you pass `.maxInFlight` it is _per_ connection.
+
+  This may change in the future depending on our use-cases, making it a non-default
+  option would be better (if anything).
 
 ## Example
 

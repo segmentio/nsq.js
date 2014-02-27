@@ -1,4 +1,10 @@
 
+0.1.1 / 2014-02-27
+==================
+
+ * fix callback bug of doom
+ * fix: invoke remaining callbacks on socket error
+
 0.1.0 / 2014-02-25
 ==================
 

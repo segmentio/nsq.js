@@ -119,7 +119,7 @@ writer.publish('events', 'baz');
 - `maxInFlight` max messages _per_ connection [1]
 - `maxAttempts` max attempts before discarding [5]
 
- Events:
+Events:
 
 - `message` (msg) incoming message
 - `discard` (msg) discarded message

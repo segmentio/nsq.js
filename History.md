@@ -1,4 +1,9 @@
 
+0.1.3 / 2014-03-04
+==================
+
+ * change response errors to emit "error response"
+
 0.1.2 / 2014-03-03
 ==================
 

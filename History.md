@@ -1,4 +1,11 @@
 
+0.2.0 / 2014-03-08
+==================
+
+ * add better connection error messages because node is retarded
+ * add ready interval just to be safe
+ * remove empty buffer possibly causing framing issues (at least on 0.8.x)
+
 0.1.4 / 2014-03-04
 ==================
 

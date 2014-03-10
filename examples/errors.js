@@ -21,10 +21,16 @@ reader.on('message', function(msg){
   }, 200);
 });
 
+reader.on('error', function(err){
+  console.error('reader error: %s', err.stack);
+});
+
 // publish
 
 var writer = nsq.writer({ host: '0.0.0.0', port: 4150 });
 
 setInterval(function(){
-  writer.publish('events', 'some message here');
+  writer.publish('events', 'some message here', function(err){
+    if (err) console.error('writer error: %s', err.stack);
+  });
 }, 150);

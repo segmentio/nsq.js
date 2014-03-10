@@ -23,8 +23,10 @@ reader.on('message', function(msg){
 
 // publish
 
-var writer = nsq.writer({ port: 4150 });
+var writer = nsq.writer({ host: '0.0.0.0', port: 4150 });
 
 setInterval(function(){
-  writer.publish('events', 'some message here');
+  writer.publish('events', 'some message here', function(err){
+    if (err) console.error(err.stack);
+  });
 }, 150);

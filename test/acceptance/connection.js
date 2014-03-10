@@ -15,4 +15,26 @@ describe('Connection', function(){
       done();
     });
   })
+
+  it('should emit messages', function(done){
+    var pub = new Connection;
+    var sub = new Connection;
+
+    pub.on('ready', function(){
+      pub.publish('test', 'something');
+    });
+
+    pub.on('ready', function(){
+      sub.subscribe('test', 'tailer');
+      sub.ready(5);
+    });
+
+    sub.on('message', function(msg){
+      msg.finish();
+      done();
+    });
+
+    pub.connect();
+    sub.connect();
+  })
 })

@@ -1,4 +1,20 @@
 
+0.3.0 / 2014-03-10
+==================
+
+ * add tests
+ * add errors.js example
+ * add Reader#close()
+ * add "error response" event delegation
+ * add Connection host/port defaults
+ * add noop error handler to Writer, let callbacks handle it
+ * add "reconnect" event. Closes #8
+ * add Connection#addr
+ * fix writer error broadcasting pre-connection
+ * fix Connection#close()
+ * fix error emission
+ * remove Message method callbacks for commands which only reply on error. Closes #12
+
 0.2.0 / 2014-03-08
 ==================
 

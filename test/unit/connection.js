@@ -4,12 +4,12 @@ var assert = require('assert');
 
 describe('Connection(opts)', function(){
   it('should default maxAttempts to Infinity', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     assert(conn.maxAttempts == Infinity);
   })
 
   it('should default maxInFlight to 1', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     assert(conn.maxInFlight == 1);
   })
 
@@ -21,7 +21,7 @@ describe('Connection(opts)', function(){
 
 describe('Connection#command(name)', function(){
   it('should write command', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     var writes = [];
 
     conn.sock = {
@@ -37,7 +37,7 @@ describe('Connection#command(name)', function(){
 
 describe('Connection#command(name, args)', function(){
   it('should write command and args', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     var writes = [];
 
     conn.sock = {
@@ -51,7 +51,7 @@ describe('Connection#command(name, args)', function(){
   })
 
   it('should join multiple args', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     var writes = [];
 
     conn.sock = {
@@ -67,7 +67,7 @@ describe('Connection#command(name, args)', function(){
 
 describe('Connection#command(name, args, data)', function(){
   it('should write command, args and data', function(){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
     var writes = [];
 
     conn.sock = {
@@ -85,7 +85,7 @@ describe('Connection#command(name, args, data)', function(){
 
 describe('Connection#subscribe(topic, channel, fn)', function(){
   it('should SUB', function(done){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
 
     conn.command = function(cmd, args, fn){
       assert('SUB' == cmd);
@@ -99,7 +99,7 @@ describe('Connection#subscribe(topic, channel, fn)', function(){
 
 describe('Connection#publish(topic, data, fn)', function(){
   it('should PUB', function(done){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
 
     conn.command = function(cmd, args, data, fn){
       assert('PUB' == cmd);
@@ -114,7 +114,7 @@ describe('Connection#publish(topic, data, fn)', function(){
 
 describe('Connection#ready(n)', function(){
   it('should RDY', function(done){
-    var conn = new Connection({ host: '0.0.0.0', port: 1234 });
+    var conn = new Connection;
 
     conn.command = function(cmd, args){
       assert('RDY' == cmd);

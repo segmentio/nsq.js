@@ -1,6 +1,6 @@
 
 var Emitter = require('events').EventEmitter;
-var ready = require('../lib/ready');
+var ready = require('../../lib/ready');
 var assert = require('assert');
 
 describe('ready(conn, max)', function(){

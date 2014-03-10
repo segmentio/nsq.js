@@ -3,6 +3,7 @@ test:
 	@./node_modules/.bin/mocha \
 		--require should \
 		--reporter spec \
-		--bail
+		--bail \
+		test/unit/*.js
 
 .PHONY: test

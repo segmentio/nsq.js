@@ -1,5 +1,5 @@
 
-var Connection = require('../lib/connection');
+var Connection = require('../../lib/connection');
 var assert = require('assert');
 
 describe('Connection(opts)', function(){

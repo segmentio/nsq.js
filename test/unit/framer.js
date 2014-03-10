@@ -1,6 +1,6 @@
 
-var Message = require('../lib/message');
-var Framer = require('../lib/framer');
+var Message = require('../../lib/message');
+var Framer = require('../../lib/framer');
 var assert = require('assert');
 
 var data = [

@@ -1,5 +1,5 @@
 
-var Message = require('../lib/message');
+var Message = require('../../lib/message');
 var assert = require('assert');
 var body = new Buffer('135a2ad167d76e45000130363236323534303166363566303038736f6d65206d6573736167652068657265', 'hex');
 

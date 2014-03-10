@@ -37,4 +37,17 @@ describe('Connection', function(){
     pub.connect();
     sub.connect();
   })
+
+  it('should close cleanly', function(done){
+    var conn = new Connection;
+
+    conn.on('ready', function(){
+      conn.subscribe('test', 'trailer', function(err){
+        assert(!err);
+        conn.close(done);
+      });
+    });
+
+    conn.connect();
+  })
 })

@@ -34,3 +34,8 @@ setInterval(function(){
     if (err) console.error('writer error: %s', err.stack);
   });
 }, 150);
+
+process.on('uncaughtException', function(err){
+  console.error('Uncaught: %s', err.stack);
+  process.exit(1);
+});

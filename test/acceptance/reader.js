@@ -44,4 +44,27 @@ describe('Reader', function(){
       });
     })
   })
+
+  it('should discard messages after the max attempts', function(done){
+    var pub = nsq.writer();
+
+    var sub = nsq.reader({
+      topic: 'testing-reader3',
+      channel: 'reader',
+      nsqd: ['0.0.0.0:4150']
+    });
+
+    pub.on('ready', function(){
+      pub.publish('testing-reader3', 'something');
+    });
+
+    sub.on('message', function(msg){
+      msg.requeue();
+    });
+
+    sub.on('discard', function(msg){
+      msg.finish();
+      done();
+    });
+  })
 })

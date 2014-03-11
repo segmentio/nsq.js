@@ -122,18 +122,24 @@ Events:
 
 - `message` (msg) incoming message
 - `discard` (msg) discarded message
+- `error response` (err) response from nsq
 - `error` (err)
 
-### nsq.writer(options|address)
+### nsq.writer([options|address])
 
-  Create a writer:
+  Create a writer. By default a connection attempt to 0.0.0.0:4150 will be made unless one of the following options are provided:
 
  - `port` number
  - `host` name
  - `nsqd` array of nsqd addresses
  - `nsqlookupd` array of nsqlookupd addresses
 
-#### nsq.publish(topic, message)
+Events:
+
+ - `error response` (err) response from nsq
+ - `error` (err)
+
+#### nsq.publish(topic, message, [fn])
 
  Publish the given `message` to `topic` where `message`
  may be a string, buffer, or object.

@@ -130,6 +130,8 @@ Events:
 
  - `port` number
  - `host` name
+ - `nsqd` array of nsqd addresses
+ - `nsqlookupd` array of nsqlookupd addresses
 
 #### nsq.publish(topic, message)
 

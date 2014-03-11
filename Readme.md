@@ -1,4 +1,3 @@
-
 # nsq.js
 
   JavaScript NSQ client WIP.
@@ -141,16 +140,16 @@ Events:
 
  A single message.
 
-### Message#finish([callback])
+### Message#finish()
 
   Mark message as complete.
 
-### Message#requeue([timeout], [callback])
+### Message#requeue([delay])
 
   Re-queue the message immediately, or with the
-  given `timeout` in milliseconds.
+  given `delay` in milliseconds.
 
-### Message#touch([callback])
+### Message#touch()
 
   Reset the message's timeout, increasing the length
   of time before NSQD considers it timed out.

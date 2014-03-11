@@ -15,7 +15,7 @@ var reader = nsq.reader({
 });
 
 reader.on('message', function(msg){
-  console.log(msg.id);
+  console.log(msg);
   setTimeout(function(){
     msg.finish();
   }, 200);

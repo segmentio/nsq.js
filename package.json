@@ -13,7 +13,8 @@
     "node-int64": "~0.3.0",
     "bignumber.js": "~1.3.0",
     "backo": "~1.0.1",
-    "nsq-lookup": "0.0.1"
+    "nsq-lookup": "0.0.1",
+    "set-component": "~1.0.0"
   },
   "devDependencies": {
     "mocha": "*",

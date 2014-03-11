@@ -29,9 +29,7 @@ describe('Writer#publish()', function(){
     var pub = nsq.writer({ port: 5000 });
 
     pub.publish('testing-writer', 'something', function(err){
-      assert('0.0.0.0:5000' == err.address);
-      assert('ECONNREFUSED' == err.code);
-      assert('connect' == err.syscall);
+      err.message.should.equal('no nsqd nodes connected');
       done();
     });
   })

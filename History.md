@@ -1,4 +1,10 @@
 
+0.4.0 / 2014-03-11
+==================
+
+ * add .nsqd and .nsqlookupd pooling support to Writer
+ * add "error" event to writer
+
 0.3.1 / 2014-03-10
 ==================
 

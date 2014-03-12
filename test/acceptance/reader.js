@@ -51,7 +51,8 @@ describe('Reader', function(){
     var sub = nsq.reader({
       topic: 'testing-reader3',
       channel: 'reader',
-      nsqd: ['0.0.0.0:4150']
+      nsqd: ['0.0.0.0:4150'],
+      maxAttempts: 5
     });
 
     pub.on('ready', function(){

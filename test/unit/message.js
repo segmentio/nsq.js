@@ -121,3 +121,33 @@ describe('Message#timeUntilTimeout()', function(){
   })
 })
 
+describe('Message#timedout()', function(){
+  it('should return false if the message has not timed out', function(){
+    var conn = {
+      features: {
+        msg_timeout: 5000
+      }
+    };
+
+    var msg = new Message(body, conn);
+    msg.timedout().should.be.false;
+  })
+})
+
+describe('Message#timedout()', function(){
+  it('should return false if the message has not timed out', function(done){
+    var conn = {
+      features: {
+        msg_timeout: 100
+      }
+    };
+
+    var msg = new Message(body, conn);
+
+    setTimeout(function(){
+      msg.timedout().should.be.true;
+      done();
+    }, 150);
+  })
+})
+

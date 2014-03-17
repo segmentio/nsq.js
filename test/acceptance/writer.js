@@ -12,7 +12,7 @@ describe('Writer#publish()', function(){
       pub.publish('testing-writer', 'something');
     });
 
-    pub.on('ready', function(){
+    sub.on('ready', function(){
       sub.subscribe('testing-writer', 'tailer');
       sub.ready(5);
     });

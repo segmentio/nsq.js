@@ -86,6 +86,7 @@ describe('Connection#command(name, args, data)', function(){
 describe('Connection#subscribe(topic, channel, fn)', function(){
   it('should SUB', function(done){
     var conn = new Connection;
+    conn._ready = true;
 
     conn.command = function(cmd, args, fn){
       assert('SUB' == cmd);
@@ -100,6 +101,7 @@ describe('Connection#subscribe(topic, channel, fn)', function(){
 describe('Connection#publish(topic, data, fn)', function(){
   it('should PUB', function(done){
     var conn = new Connection;
+    conn._ready = true;
 
     conn.command = function(cmd, args, data, fn){
       assert('PUB' == cmd);

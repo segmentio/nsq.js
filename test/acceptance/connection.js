@@ -24,7 +24,7 @@ describe('Connection', function(){
       pub.publish('test', 'something');
     });
 
-    pub.on('ready', function(){
+    sub.on('ready', function(){
       sub.subscribe('test', 'tailer');
       sub.ready(5);
     });

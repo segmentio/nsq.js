@@ -15,7 +15,7 @@ describe('reconnect(conn)', function(){
     reconnect(conn);
 
     conn.emit('connect');
-    conn.emit('end');
+    conn.emit('close');
 
     conn.on('reconnect', function(c){
       assert(called);
@@ -26,25 +26,16 @@ describe('reconnect(conn)', function(){
     conn.emit('connect');
   })
 
-  it('should reconnect on errors', function(done){
+  it('should reconnect on close', function(done){
     var conn = new Emitter;
 
     conn.connect = done;
 
     reconnect(conn);
-    conn.emit('error', new Error('boom'));
+    conn.emit('close');
   })
 
-  it('should reconnect on end', function(done){
-    var conn = new Emitter;
-
-    conn.connect = done;
-
-    reconnect(conn);
-    conn.emit('end');
-  })
-
-  it('should not reconnect when closing', function(done){
+  it('should not reconnect after .close()', function(done){
     var conn = new Emitter;
 
     conn.connect = function(){

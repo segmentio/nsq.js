@@ -42,7 +42,7 @@ describe('Connection', function(){
     var conn = new Connection;
 
     conn.on('ready', function(){
-      conn.subscribe('test', 'trailer', function(err){
+      conn.subscribe('test', 'tailer', function(err){
         assert(!err);
         conn.close(done);
       });

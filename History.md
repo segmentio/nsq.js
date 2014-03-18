@@ -1,4 +1,10 @@
 
+0.5.1 / 2014-03-17
+==================
+
+ * fix: add quick-n-dirty ready state check to response methods
+ * fix IDENTIFY race: use "close" instead of "error" for reconnection
+
 0.5.0 / 2014-03-15
 ==================
 

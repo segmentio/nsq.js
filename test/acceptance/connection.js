@@ -1,8 +1,15 @@
 
 var Connection = require('../../lib/connection');
 var assert = require('assert');
+var utils = require('../utils');
 
 describe('Connection', function(){
+  beforeEach(function(done){
+    utils.emptyTopic('test', function(){
+      done();
+    });
+  })
+
   it('should identify on connect', function(done){
     var conn = new Connection;
 

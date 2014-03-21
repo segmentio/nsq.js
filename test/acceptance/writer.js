@@ -1,19 +1,26 @@
 
 var Connection = require('../../lib/connection');
+var utils = require('../utils');
 var assert = require('assert');
 var nsq = require('../..');
 
 describe('Writer#publish()', function(){
+  beforeEach(function(done){
+    utils.emptyTopic('test', function(){
+      done();
+    });
+  })
+
   it('should publish messages', function(done){
     var pub = nsq.writer();
     var sub = new Connection;
 
     pub.on('ready', function(){
-      pub.publish('testing-writer', 'something');
+      pub.publish('test', 'something');
     });
 
     sub.on('ready', function(){
-      sub.subscribe('testing-writer', 'tailer');
+      sub.subscribe('test', 'tailer');
       sub.ready(5);
     });
 
@@ -30,7 +37,7 @@ describe('Writer#publish()', function(){
 
     pub.on('error', function(){});
 
-    pub.publish('testing-writer', 'something', function(err){
+    pub.publish('test', 'something', function(err){
       err.message.should.equal('no nsqd nodes connected');
       done();
     });

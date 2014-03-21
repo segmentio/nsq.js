@@ -11,7 +11,7 @@ dependencies:
     - cp nsq-0.2.27.linux-amd64.go1.2/bin/* .
     - ./nsqlookupd:
         background: true
-    - ./nsqd --lookupd-tcp-address=127.0.0.1:4160 --tcp-address=127.0.0.1:5001:
+    - ./nsqd --lookupd-tcp-address=127.0.0.1:4160 --tcp-address=127.0.0.1:4150:
         background: true
   cache_directories:
     - nsq-0.2.27.linux-amd64.go1.2

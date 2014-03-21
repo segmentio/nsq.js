@@ -5,7 +5,7 @@ var utils = require('../utils');
 
 describe('Connection', function(){
   beforeEach(function(done){
-    utils.emptyTopic('test', function(){
+    utils.deleteTopic('test', function(){
       done();
     });
   })

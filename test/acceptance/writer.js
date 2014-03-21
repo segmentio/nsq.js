@@ -6,7 +6,7 @@ var nsq = require('../..');
 
 describe('Writer#publish()', function(){
   beforeEach(function(done){
-    utils.emptyTopic('test', function(){
+    utils.deleteTopic('test', function(){
       done();
     });
   })

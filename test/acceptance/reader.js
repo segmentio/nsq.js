@@ -5,7 +5,7 @@ var nsq = require('../..');
 
 describe('Reader', function(){
   beforeEach(function(done){
-    utils.emptyTopic('test', function(){
+    utils.deleteTopic('test', function(){
       done();
     });
   })

@@ -6,13 +6,13 @@
 var request = require('superagent');
 
 /**
- * Empty `topic`.
+ * Delete `topic`.
  *
  * @param {String} topic
  * @param {Function} fn
  */
 
-exports.emptyTopic = function(topic, fn){
+exports.deleteTopic = function(topic, fn){
   request
   .get('http://127.0.0.1:4151/delete_topic')
   .query({ topic: topic })

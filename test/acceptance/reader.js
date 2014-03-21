@@ -36,17 +36,21 @@ describe('Reader', function(){
       var pub = nsq.writer();
 
       pub.on('ready', function(){
-        pub.publish('test', 'something');
+        pub.publish('test', 'something', function(err){
+          if (err) return done(err);
+          console.log('published');
 
-        var sub = nsq.reader({
-          topic: 'test',
-          channel: 'reader',
-          nsqlookupd: ['0.0.0.0:4161']
-        });
+          var sub = nsq.reader({
+            topic: 'test',
+            channel: 'reader',
+            nsqlookupd: ['0.0.0.0:4161']
+          });
 
-        sub.once('message', function(msg){
-          msg.finish();
-          done();
+          sub.once('message', function(msg){
+            console.log('done');
+            msg.finish();
+            done();
+          });
         });
       });
     })

@@ -1,6 +1,6 @@
 
 var Emitter = require('events').EventEmitter;
-var reconnect = require('../../lib/reconnect');
+var reconnect = require('../../lib/mixins/reconnect');
 var assert = require('assert');
 
 describe('reconnect(conn)', function(){

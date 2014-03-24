@@ -1,4 +1,9 @@
 
+0.7.1 / 2014-03-24
+==================
+
+ * fix graceful close case when no messages are in-flight
+
 0.7.0 / 2014-03-24
 ==================
 

@@ -24,9 +24,10 @@ reader.on('message', function(msg){
 
 var writer = nsq.writer({ port: 4150 });
 
-setInterval(function(){
-  var n = 20;
-  while (n--) {
-    writer.publish('events', 'some message here');
-  }
-}, 2);
+function next() {
+  setImmediate(function(){
+    writer.publish('events', ['foo', 'bar', 'baz'], next);
+  });
+}
+
+next();

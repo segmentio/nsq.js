@@ -153,4 +153,23 @@ describe('Reader#close(fn)', function(){
       }, 50);
     });
   })
+
+  it('should close if there are no in-flight messages', function(done){
+    var pub = nsq.writer();
+
+    var sub = nsq.reader({
+      topic: 'empty',
+      channel: 'reader',
+      nsqd: ['0.0.0.0:4150'],
+      maxInFlight: 10
+    });
+
+    sub.on('ready', function(){
+      // give it some time to SUB... lame
+      // add subscribe event?
+      setTimeout(function(){
+        sub.close(done);
+      }, 100);
+    });
+  })
 })

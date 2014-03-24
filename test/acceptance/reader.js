@@ -38,7 +38,6 @@ describe('Reader', function(){
       pub.on('ready', function(){
         pub.publish('test', 'something', function(err){
           if (err) return done(err);
-          console.log('published');
 
           var sub = nsq.reader({
             topic: 'test',
@@ -47,7 +46,6 @@ describe('Reader', function(){
           });
 
           sub.once('message', function(msg){
-            console.log('done');
             msg.finish();
             done();
           });

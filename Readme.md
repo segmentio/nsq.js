@@ -11,6 +11,7 @@
   - does not arbitrarily apply backoff on requeues
   - does not distribute max-in-flight
   - reconnection to dead nsqd nodes
+  - graceful close support
 
 ## Installation
 

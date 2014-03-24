@@ -12,6 +12,13 @@ describe('Message(buffer)', function(){
   })
 })
 
+describe('Message#inspect()', function(){
+  it('should return something useful', function(){
+    var msg = new Message(body, { features: {} });
+    msg.inspect().should.equal('<Message 062625401f65f008 attempts=1 size=17>');
+  })
+})
+
 describe('Message#json()', function(){
   it('should return parsed json', function(){
     var msg = new Message(body, { features: {} });

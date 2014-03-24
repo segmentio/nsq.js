@@ -143,7 +143,8 @@ Events:
 #### nsq.publish(topic, message, [fn])
 
  Publish the given `message` to `topic` where `message`
- may be a string, buffer, or object.
+ may be a string, buffer, or object. An array of messages
+ may be passed, in which case a MPUT is performed.
 
 ## Message
 

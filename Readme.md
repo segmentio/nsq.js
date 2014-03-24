@@ -170,9 +170,9 @@ Events:
 ## Running tests
 
 ```
-$ nsqd --lookupd-tcp-address=0.0.0.0:4160 &
-$ nsqlookupd &
-$ make test
+nsqd --lookupd-tcp-address=0.0.0.0:4160 &
+nsqlookupd &
+make test
 ```
 
 # License

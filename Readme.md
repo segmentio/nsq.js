@@ -157,7 +157,8 @@ Events:
 ### Message#requeue([delay])
 
   Re-queue the message immediately, or with the
-  given `delay` in milliseconds.
+  given `delay` in milliseconds, or a string such
+  as "5s", "10m" etc.
 
 ### Message#touch()
 

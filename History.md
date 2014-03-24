@@ -1,4 +1,16 @@
 
+0.7.0 / 2014-03-24
+==================
+
+ * add graceful close support. Closes #14
+ * add ms() support to .requeue(). Closes #22
+ * add pre-0.11.x friendly msg.inspect(). Closes #20
+ * add MPUB support. Closes #6
+ * add CI support
+ * add reader delegation of "ready" event
+ * move delegate to utils.js
+ * move mixins to lib/mixins
+
 0.6.0 / 2014-03-18
 ==================
 

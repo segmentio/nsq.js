@@ -1,4 +1,9 @@
 
+0.9.0 / 2014-04-10
+==================
+
+ * add ready: false support for disabling auto-RDY
+
 0.8.1 / 2014-04-02
 ==================
 

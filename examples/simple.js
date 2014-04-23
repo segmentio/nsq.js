@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var jstrace = require('jstrace');
 var nsq = require('..');
 
 // subscribe
@@ -11,7 +12,8 @@ var reader = nsq.reader({
   nsqd: ['0.0.0.0:4150'],
   maxInFlight: 5,
   topic: 'events',
-  channel: 'ingestion'
+  channel: 'ingestion',
+  trace: jstrace
 });
 
 reader.on('message', function(msg){

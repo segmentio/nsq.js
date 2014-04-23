@@ -9,6 +9,7 @@
   - easier debugging via [debug()](https://github.com/visionmedia/debug) instrumentation
   - native json message support
   - does not arbitrarily apply backoff on requeues
+  - disabling of auto-RDY support for manual control (high throughput etc)
   - does not distribute max-in-flight
   - reconnection to dead nsqd nodes
   - graceful close support
@@ -169,6 +170,16 @@ Events:
 ### Message#json()
 
   Return parsed JSON object.
+
+## Tracing
+
+ The following [jstrace](https://github.com/jstrace/jstrace) probes are available:
+
+- `connection:ready` ready count sent
+- `connection:message` message received
+- `message:finish` finished a message
+- `message:requeue` requeued a message
+- `message:touch` touched a message
 
 ## Running tests
 

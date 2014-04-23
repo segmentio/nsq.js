@@ -20,7 +20,9 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*",
-    "superagent": "~0.17.0"
+    "superagent": "~0.17.0",
+    "jstrace": "~0.1.0",
+    "bytes": "~0.3.0"
   },
   "license": "MIT"
 }

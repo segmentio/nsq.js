@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var nsq = require('..');
+ var nsq = require('..');
 
 // subscribe
 

@@ -1,4 +1,10 @@
 
+0.10.0 / 2014-04-24
+==================
+
+ * add quick-n-dirty rdy distribution
+ * add jstrace probes and examples. Closes #24
+
 0.9.1 / 2014-04-10
 ==================
 

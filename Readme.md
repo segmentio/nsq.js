@@ -10,7 +10,6 @@
   - native json message support
   - does not arbitrarily apply backoff on requeues
   - disabling of auto-RDY support for manual control (high throughput etc)
-  - does not distribute max-in-flight
   - reconnection to dead nsqd nodes
   - graceful close support
 
@@ -53,20 +52,6 @@ nsq:connection response OK +0ms
   consumer is faulty, IMO this is a weird default,
   and the opposite of what we need so it's not applied in
   this client.
-
-### Max in-flight distribution
-
-  The NSQD documentation recommends attempting to
-  evenly distribute the max-in-flight __RDY__ count
-  to all connections, but only is this complicated to
-  enforce properly when connections are introduced, dropped,
-  overwhelmed, underwhelmed and so on - it introduced a
-  non-deterministic behaviour. We don't need a strict
-  max-in-flight cap so this library does not implement this
-  behaviour (for now), when you pass `.maxInFlight` it is _per_ connection.
-
-  This may change in the future depending on our use-cases, making it a non-default
-  option would be better (if anything).
 
 ## Example
 
@@ -118,7 +103,7 @@ writer.publish('events', 'baz');
 - `channel` channel name
 - `nsqd` array of nsqd addresses
 - `nsqlookupd` array of nsqlookupd addresses
-- `maxInFlight` max messages _per_ connection [1]
+- `maxInFlight` max messages distributed across connections [10]
 - `maxAttempts` max attempts before discarding [5]
 
 Events:

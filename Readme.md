@@ -88,9 +88,11 @@ reader.on('discard', function(msg){
 
 var writer = nsq.writer(':4150');
 
-writer.publish('events', 'foo');
-writer.publish('events', 'bar');
-writer.publish('events', 'baz');
+writer.on('ready', function() {
+  writer.publish('events', 'foo');
+  writer.publish('events', 'bar');
+  writer.publish('events', 'baz');
+});
 ```
 
 ## API

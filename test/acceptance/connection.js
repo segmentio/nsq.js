@@ -57,4 +57,21 @@ describe('Connection', function(){
 
     conn.connect();
   })
+
+  it('should only call callbacks a single time', function(done){
+    var conn = new Connection;
+    var called = 0;
+
+    conn.on('error', function(){});
+    conn.on('ready', function(){
+      conn.sock.destroy();
+      conn.publish('test', 'something', function(err){
+        called++;
+      });
+      assert.equal(called, 1);
+      done();
+    });
+
+    conn.connect();
+  })
 })

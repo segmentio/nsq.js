@@ -1,4 +1,10 @@
 
+0.11.1 / 2014-06-20
+==================
+
+ * add Message#toJSON()
+ * add: mark ._ready as false on socket error
+
 0.11.0 / 2014-05-13
 ==================
 

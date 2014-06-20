@@ -4,6 +4,7 @@
 
  * add Message#toJSON()
  * add: mark ._ready as false on socket error
+ * fix multiple callbacks when socket errors occur
 
 0.11.0 / 2014-05-13
 ==================

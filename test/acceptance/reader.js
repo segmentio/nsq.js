@@ -165,11 +165,7 @@ describe('Reader#close(fn)', function(){
     });
 
     sub.on('ready', function(){
-      // give it some time to SUB... lame
-      // add subscribe event?
-      setTimeout(function(){
-        sub.close(done);
-      }, 100);
+      sub.close(done);
     });
   })
 })

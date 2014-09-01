@@ -1,3 +1,9 @@
+0.11.3 / 2014-09-01
+===================
+
+  * add: support for "client_id".
+  * fix: allow topic length up to 64, not 33.
+  * fix: remove old connections when they are no longer returned from nsqlookupd.
 
 0.11.2 / 2014-06-21
 ==================

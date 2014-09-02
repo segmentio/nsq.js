@@ -57,6 +57,37 @@ describe('Writer#publish()', function(){
     pub.on('error', function(){});
   })
 
+  it('should close with an optional callback', function(done){
+    var pub = nsq.writer();
+    var sub = new Connection;
+    var n = 0;
+
+    function next(err){
+      if (err) return done(err);
+      n = n + 1;
+    }
+
+    pub.on('ready', function(){
+      pub.publish('test', new Buffer(1024), next);
+      pub.publish('test', new Buffer(1024), next);
+      pub.publish('test', new Buffer(1024), next);
+      pub.close(function(){
+        assert(n === 3);
+        done();
+      });
+    });
+
+    sub.on('ready', function(){
+      sub.subscribe('test', 'tailer');
+    });
+
+    sub.on('message', function(msg){
+      msg.finish();
+    });
+
+    sub.connect();
+  });
+
   describe('with an array', function(){
     it('should MPUT', function(done){
       var pub = nsq.writer();

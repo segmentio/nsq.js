@@ -115,6 +115,9 @@ Events:
 - `error response` (err) response from nsq
 - `error` (err)
 
+### reader#close([fn])
+Close the reader's connection(s) and fire the optional [fn] when completed.
+
 ### nsq.writer([options|address])
 
   Create a writer. By default a connection attempt to 0.0.0.0:4150 will be made unless one of the following options are provided:
@@ -129,11 +132,14 @@ Events:
  - `error response` (err) response from nsq
  - `error` (err)
 
-#### nsq.publish(topic, message, [fn])
+### writer#publish(topic, message, [fn])
 
  Publish the given `message` to `topic` where `message`
  may be a string, buffer, or object. An array of messages
  may be passed, in which case a MPUT is performed.
+
+### writer#close([fn])
+Close the writer's connection(s) and fire the optional [fn] when completed.
 
 ## Message
 

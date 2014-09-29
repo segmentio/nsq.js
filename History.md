@@ -1,3 +1,10 @@
+0.12.0 / 2014-09-29
+===================
+
+  * Prevent lookupd polling from reconnecting after a close().
+  * Document close methods.
+  * Add writer.close() callback.
+
 0.11.3 / 2014-09-01
 ===================
 

@@ -16,9 +16,9 @@ describe('Connection', function(){
     conn.connect();
 
     conn.on('ready', function(){
-      assert(conn.features.version);
-      assert(conn.features.max_rdy_count);
-      assert(conn.features.msg_timeout);
+      assert('version' in conn.features);
+      assert('max_rdy_count' in conn.features);
+      assert('msg_timeout' in conn.features);
       done();
     });
   })

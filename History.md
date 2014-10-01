@@ -1,4 +1,9 @@
-0.12.1 / 2014-10-30
+0.12.2 / 2014-10-01
+===================
+
+  * fix: use process.nextTick() to keep older node deploys happy.
+
+0.12.1 / 2014-10-01
 ===================
 
   * fix: call msgs.finish() on "discarded" messages

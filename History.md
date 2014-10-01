@@ -1,9 +1,14 @@
+0.12.1 / 2014-10-30
+===================
+
+  * fix: call msgs.finish() on "discarded" messages
+
 0.12.0 / 2014-09-29
 ===================
 
-  * Prevent lookupd polling from reconnecting after a close().
-  * Document close methods.
-  * Add writer.close() callback.
+  * fix: prevent lookupd polling from reconnecting after a close().
+  * docs: close methods.
+  * add: writer.close() callback.
 
 0.11.3 / 2014-09-01
 ===================

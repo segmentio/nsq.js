@@ -101,6 +101,7 @@ writer.on('ready', function() {
 
   Create a reader:
 
+- `id` connection identifier *(see `client_id` in the [spec](http://nsq.io/clients/tcp_protocol_spec.html#identify))*
 - `topic` topic name
 - `channel` channel name
 - `nsqd` array of nsqd addresses

@@ -1,3 +1,9 @@
+0.12.3 / 2014-10-06
+===================
+
+  * fix: integration command callback into socket.write callback.
+  * change: swap out bignum implementations.
+
 0.12.2 / 2014-10-01
 ===================
 

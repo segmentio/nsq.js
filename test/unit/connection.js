@@ -25,13 +25,13 @@ describe('Connection#command(name)', function(){
     var writes = [];
 
     conn.sock = {
-      write: function(data){
-        writes.push(data);
+      write: function(chunks){
+        writes = writes.concat(chunks);
       }
     };
 
     conn.command('NOP');
-    writes.should.eql(['NOP\n']);
+    writes.toString().should.eql('NOP\n');
   })
 })
 
@@ -41,13 +41,13 @@ describe('Connection#command(name, args)', function(){
     var writes = [];
 
     conn.sock = {
-      write: function(data){
-        writes.push(data);
+      write: function(chunks){
+         writes = writes.concat(chunks);
       }
     };
 
     conn.command('RDY', [5]);
-    writes.should.eql(['RDY 5\n']);
+    writes.toString().should.eql('RDY 5\n');
   })
 
   it('should join multiple args', function(){
@@ -55,13 +55,13 @@ describe('Connection#command(name, args)', function(){
     var writes = [];
 
     conn.sock = {
-      write: function(data){
-        writes.push(data);
+      write: function(chunks){
+         writes = writes.concat(chunks);
       }
     };
 
     conn.command('REQ', ['12345', 5000]);
-    writes.should.eql(['REQ 12345 5000\n']);
+    writes.toString().should.eql('REQ 12345 5000\n');
   })
 })
 
@@ -71,15 +71,13 @@ describe('Connection#command(name, args, data)', function(){
     var writes = [];
 
     conn.sock = {
-      write: function(data){
-        writes.push(data);
+      write: function(chunks){
+         writes = writes.concat(chunks);
       }
     };
 
     conn.command('PUB', ['events'], new Buffer('foo bar'));
-    writes[0].should.equal('PUB events\n');
-    writes[1].toString('hex').should.equal('00000007');
-    writes[2].toString().should.equal('foo bar');
+    writes.toString().should.eql('PUB events\n\u0000\u0000\u0000\u0007foo bar');
   })
 })
 

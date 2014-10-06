@@ -31,3 +31,7 @@ function next() {
 }
 
 next();
+
+setTimeout(function(){
+  process.exit(0);
+}, 10000);

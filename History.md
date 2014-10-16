@@ -1,3 +1,9 @@
+0.12.4 / 2014-10-16
+===================
+
+  * add: invalid connection error for debugging a connection state bug.
+  * add: error handling when indentify() fails.
+
 0.12.3 / 2014-10-06
 ===================
 

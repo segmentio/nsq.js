@@ -1,6 +1,6 @@
 {
   "name": "nsq.js",
-  "version": "0.12.4",
+  "version": "0.12.5",
   "repository": "segmentio/nsq.js",
   "description": "NSQ client actually written in javascript",
   "keywords": [

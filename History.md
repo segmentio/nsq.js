@@ -1,3 +1,9 @@
+
+0.12.6 / 2014-11-14
+==================
+
+ * fix: reader close prevented when no connections have been made.
+
 0.12.5 / 2014-10-28
 ===================
 

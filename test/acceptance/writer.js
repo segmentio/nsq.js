@@ -117,4 +117,28 @@ describe('Writer#publish()', function(){
       sub.connect();
     })
   })
+
+  describe('with a buffer', function(){
+    it('should not stringify', function(done){
+      var pub = nsq.writer();
+      var sub = new Connection;
+
+      pub.on('ready', function(){
+        pub.publish('test', Buffer('foobar'));
+      });
+
+      sub.on('ready', function(){
+        sub.subscribe('test', 'something');
+        sub.ready(5);
+      });
+
+      sub.on('message', function(msg){
+        msg.finish();
+        msg.body.toString().should.eql('foobar');
+        done();
+      });
+
+      sub.connect();
+    })
+  })
 })

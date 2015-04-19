@@ -52,6 +52,16 @@ describe('Reader', function(){
         });
       });
     })
+
+    it('should set .timer attribute', function(){
+      var sub = nsq.reader({
+        topic: 'test',
+        channel: 'reader',
+        nsqlookupd: ['0.0.0.0:4161']
+      });
+
+      assert(sub.timer !== null);
+    })
   })
 
   it('should discard messages after the max attempts', function(done){
@@ -171,5 +181,24 @@ describe('Reader#close(fn)', function(){
         sub.close(done);
       }, 100);
     });
+  })
+})
+
+describe('Reader#close(fn)', function(){
+  it('should stop polling nsqlookupd if reader had been closed', function(done){
+    var sub = nsq.reader({
+      topic: 'test',
+      channel: 'reader',
+      nsqlookupd: ['0.0.0.0:4161'],
+      pollInterval: 100
+    });
+
+    sub.close();
+
+    setTimeout(done, 500);
+
+    sub.lookup = function(fn){
+      done(new Error('setInterval() is still running'));
+    };
   })
 })

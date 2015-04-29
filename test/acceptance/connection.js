@@ -74,4 +74,15 @@ describe('Connection', function(){
 
     conn.connect();
   })
+
+  it('should not emit socket errors after destroy', function(done){
+    var conn = new Connection;
+    conn.on('error', done);
+    conn.on('ready', function(){
+      conn.destroy();
+      conn.sock.emit('error', new Error);
+      done();
+    });
+    conn.connect();
+  })
 })

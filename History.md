@@ -1,4 +1,12 @@
 
+0.12.8 / 2015-04-29
+===================
+
+  * add reader polling timer tests
+  * remove Reader.closing
+  * setting reader's 'timer' attribute
+  * connection: fix socket errors after destroy
+
 0.12.7 / 2015-04-08
 ===================
 

@@ -1,6 +1,7 @@
 
 var Connection = require('../../lib/connection');
 var assert = require('assert');
+var framerData = require('../utils').framerData;
 
 describe('Connection(opts)', function(){
   it('should default maxAttempts to Infinity', function(){
@@ -62,6 +63,32 @@ describe('Connection#command(name, args)', function(){
 
     conn.command('REQ', ['12345', 5000]);
     writes.toString().should.eql('REQ 12345 5000\n');
+  })
+})
+
+describe('Connection#connect(fn)', function(){
+  it('should emit message if maxAttempts and attempts is 1', function(done){
+    var conn = new Connection({ maxAttempts: 1 });
+
+    conn.on('ready', function(){
+      // ignore 'invalid state' error because no callbacks
+      conn.on('error', function(){});
+
+      conn.on('discard', function(){
+        throw new Error('discard should not be called');
+      });
+
+      conn.on('message', function(msg){
+        msg.attempts.should.eql(1);
+        done();
+      });
+
+      framerData.forEach(function(data){
+        conn.framer.write(new Buffer(data, 'hex'));
+      });
+    });
+
+    conn.connect();
   })
 })
 

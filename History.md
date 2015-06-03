@@ -1,4 +1,11 @@
 
+0.13.0 / 2015-06-03
+===================
+
+  * connection: fix maxAttempts=1 case
+  * fix global
+  * make npm test work
+
 0.12.8 / 2015-04-29
 ===================
 

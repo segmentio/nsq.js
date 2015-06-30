@@ -85,4 +85,15 @@ describe('Connection', function(){
     });
     conn.connect();
   })
+
+  it('should not write after socket.end()', function(done){
+    var conn = new Connection;
+    conn.connect();
+    conn.on('ready', function(){
+      conn.end();
+      conn.publish('test', 'stuff');
+      conn.on('error', done);
+      conn.on('end', done);
+    });
+  });
 })

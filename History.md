@@ -1,4 +1,9 @@
 
+0.14.3 / 2015-07-10
+==================
+
+  * conn: ignore all writes after the connection is closed
+
 0.14.0 / 2015-06-22
 ==================
 

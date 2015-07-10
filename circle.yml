@@ -1,9 +1,7 @@
 machine:
   node:
     version: 0.10.31
-checkout:
-  post:
-    - echo "_auth = `printf $AUTH`" > npmrc
+
 dependencies:
   pre:
     - wget https://github.com/bitly/nsq/releases/download/v0.2.30/nsq-0.2.30.linux-amd64.go1.3.tar.gz
@@ -16,4 +14,4 @@ dependencies:
   cache_directories:
     - nsq-0.2.30.linux-amd64.go1.3
   override:
-    - npm install --userconfig npmrc --registry https://segmentio.registry.nodejitsu.com --no-strict-ssl --always-auth
+    - npm install

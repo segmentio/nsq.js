@@ -45,7 +45,7 @@ describe('Reader', function(){
             nsqlookupd: ['0.0.0.0:4161']
           });
 
-          sub.once('message', function(msg){
+          sub.on('message', function(msg){
             msg.finish();
             done();
           });

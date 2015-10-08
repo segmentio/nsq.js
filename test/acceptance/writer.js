@@ -15,9 +15,7 @@ describe('Writer#publish()', function(){
     var pub = nsq.writer();
     var sub = new Connection;
 
-    pub.on('ready', function(){
-      pub.publish('test', 'something');
-    });
+    pub.publish('test', 'something');
 
     sub.on('ready', function(){
       sub.subscribe('test', 'tailer');
@@ -30,17 +28,6 @@ describe('Writer#publish()', function(){
     });
 
     sub.connect();
-  })
-
-  it('should invoke callbacks with errors', function(done){
-    var pub = nsq.writer({ port: 5000 });
-
-    pub.on('error', function(){});
-
-    pub.publish('test', 'something', function(err){
-      err.message.should.equal('no nsqd nodes connected');
-      done();
-    });
   })
 
   it('should emit "error"', function(done){

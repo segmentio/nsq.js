@@ -88,11 +88,9 @@ reader.on('discard', function(msg){
 
 var writer = nsq.writer(':4150');
 
-writer.on('ready', function() {
-  writer.publish('events', 'foo');
-  writer.publish('events', 'bar');
-  writer.publish('events', 'baz');
-});
+writer.publish('events', 'foo');
+writer.publish('events', 'bar');
+writer.publish('events', 'baz');
 ```
 
 ## API
@@ -137,7 +135,8 @@ Events:
 
  Publish the given `message` to `topic` where `message`
  may be a string, buffer, or object. An array of messages
- may be passed, in which case a MPUT is performed.
+ may be passed, in which case a MPUT is performed.  It will 
+ wait for a connection to be established.
 
 ### writer#close([fn])
 Close the writer's connection(s) and fire the optional [fn] when completed.

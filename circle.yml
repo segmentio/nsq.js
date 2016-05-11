@@ -4,14 +4,14 @@ machine:
 
 dependencies:
   pre:
-    - wget https://github.com/bitly/nsq/releases/download/v0.2.30/nsq-0.2.30.linux-amd64.go1.3.tar.gz
-    - tar xvzf nsq-0.2.30.linux-amd64.go1.3.tar.gz
-    - cp nsq-0.2.30.linux-amd64.go1.3/bin/* .
+    - wget https://s3.amazonaws.com/bitly-downloads/nsq/nsq-0.3.6.linux-amd64.go1.5.1.tar.gz
+    - tar xvzf nsq-0.3.6.linux-amd64.go1.5.1.tar.gz
+    - cp nsq-0.3.6.linux-amd64.go1.5.1/bin/* .
     - ./nsqlookupd:
         background: true
     - ./nsqd --lookupd-tcp-address=127.0.0.1:4160:
         background: true
   cache_directories:
-    - nsq-0.2.30.linux-amd64.go1.3
+    - nsq-0.3.6.linux-amd64.go1.5.1
   override:
     - npm install

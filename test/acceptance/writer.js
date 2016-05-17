@@ -3,10 +3,13 @@ var Connection = require('../../lib/connection');
 var utils = require('../utils');
 var assert = require('assert');
 var nsq = require('../..');
+var uid = require('uid');
 
 describe('Writer#publish()', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
+  var topic = uid();
+  afterEach(function(done){
+    utils.deleteTopic(topic, function(){
+      topic = uid();
       done();
     });
   })
@@ -16,11 +19,11 @@ describe('Writer#publish()', function(){
     var sub = new Connection;
 
     pub.on('ready', function(){
-      pub.publish('test', 'something');
+      pub.publish(topic, 'something');
     });
 
     sub.on('ready', function(){
-      sub.subscribe('test', 'tailer');
+      sub.subscribe(topic, 'tailer');
       sub.ready(5);
     });
 
@@ -37,7 +40,7 @@ describe('Writer#publish()', function(){
 
     pub.on('error', function(){});
 
-    pub.publish('test', 'something', function(err){
+    pub.publish(topic, 'something', function(err){
       err.message.should.equal('no nsqd nodes connected');
       done();
     });
@@ -68,9 +71,9 @@ describe('Writer#publish()', function(){
     }
 
     pub.on('ready', function(){
-      pub.publish('test', new Buffer(1024), next);
-      pub.publish('test', new Buffer(1024), next);
-      pub.publish('test', new Buffer(1024), next);
+      pub.publish(topic, new Buffer(1024), next);
+      pub.publish(topic, new Buffer(1024), next);
+      pub.publish(topic, new Buffer(1024), next);
       pub.close(function(){
         assert(n === 3);
         done();
@@ -78,7 +81,7 @@ describe('Writer#publish()', function(){
     });
 
     sub.on('ready', function(){
-      sub.subscribe('test', 'tailer');
+      sub.subscribe(topic, 'tailer');
     });
 
     sub.on('message', function(msg){
@@ -96,11 +99,11 @@ describe('Writer#publish()', function(){
       var n = 0;
 
       pub.on('ready', function(){
-        pub.publish('test', ['foo', 'bar', 'baz']);
+        pub.publish(topic, ['foo', 'bar', 'baz']);
       });
 
       sub.on('ready', function(){
-        sub.subscribe('test', 'something');
+        sub.subscribe(topic, 'something');
         sub.ready(5);
       });
 
@@ -124,11 +127,11 @@ describe('Writer#publish()', function(){
       var sub = new Connection;
 
       pub.on('ready', function(){
-        pub.publish('test', Buffer('foobar'));
+        pub.publish(topic, Buffer('foobar'));
       });
 
       sub.on('ready', function(){
-        sub.subscribe('test', 'something');
+        sub.subscribe(topic, 'something');
         sub.ready(5);
       });
 

@@ -106,8 +106,13 @@ writer.on('ready', function() {
 - `channel` channel name
 - `nsqd` array of nsqd addresses
 - `nsqlookupd` array of nsqlookupd addresses
+- `maxAttempts` max attempts before discarding [Infinity]
+- `maxConnectionAttempts` max reconnection attempts [Infinity]
 - `maxInFlight` max messages distributed across connections [10]
-- `maxAttempts` max attempts before discarding [5]
+- `msgTimeout` session-specific msg timeout
+- `pollInterval` nsqlookupd poll interval[10000]
+- `ready` when `false` auto-RDY maintenance will be disabled
+- `trace` trace function
 
 Events:
 

@@ -151,17 +151,17 @@ Close the writer's connection(s) and fire the optional [fn] when completed.
 
  A single message.
 
-### Message#finish()
+### Message#finish([fn])
 
-  Mark message as complete.
+  Mark message as complete..
 
-### Message#requeue([delay])
+### Message#requeue([delay], [fn])
 
   Re-queue the message immediately, or with the
   given `delay` in milliseconds, or a string such
   as "5s", "10m" etc.
 
-### Message#touch()
+### Message#touch([fn])
 
   Reset the message's timeout, increasing the length
   of time before NSQD considers it timed out.

@@ -21,12 +21,11 @@
     "set-component": "~1.0.0"
   },
   "devDependencies": {
-    "bytes": "~0.3.0",
-    "jstrace": "~0.1.0",
     "mocha": "*",
     "should": "*",
     "superagent": "~0.17.0",
-    "uid": "0.0.2"
+    "jstrace": "~0.1.0",
+    "bytes": "~0.3.0"
   },
   "license": "MIT"
 }

@@ -2,13 +2,10 @@
 var Connection = require('../../lib/connection');
 var assert = require('assert');
 var utils = require('../utils');
-var uid = require('uid');
 
 describe('Connection', function(){
-  var topic = uid();
-  afterEach(function(done){
-    utils.deleteTopic(topic, function(){
-      topic = uid();
+  beforeEach(function(done){
+    utils.deleteTopic('test', function(){
       done();
     });
   })
@@ -31,11 +28,11 @@ describe('Connection', function(){
     var sub = new Connection;
 
     pub.on('ready', function(){
-      pub.publish(topic, 'something');
+      pub.publish('test', 'something');
     });
 
     sub.on('ready', function(){
-      sub.subscribe(topic, 'tailer');
+      sub.subscribe('test', 'tailer');
       sub.ready(5);
     });
 
@@ -52,7 +49,7 @@ describe('Connection', function(){
     var conn = new Connection;
 
     conn.on('ready', function(){
-      conn.subscribe(topic, 'tailer', function(err){
+      conn.subscribe('test', 'tailer', function(err){
         assert(!err);
         conn.close(done);
       });
@@ -68,7 +65,7 @@ describe('Connection', function(){
     conn.on('error', function(){});
     conn.on('ready', function(){
       conn.sock.destroy();
-      conn.publish(topic, 'something', function(err){
+      conn.publish('test', 'something', function(err){
         called++;
       });
       assert.equal(called, 1);
@@ -94,7 +91,7 @@ describe('Connection', function(){
     conn.connect();
     conn.on('ready', function(){
       conn.end();
-      conn.publish(topic, 'stuff');
+      conn.publish('test', 'stuff');
       conn.on('error', done);
       conn.on('end', done);
     });

@@ -14,12 +14,21 @@ var request = require('superagent');
 
 exports.deleteTopic = function(topic, fn){
   request
-  .get('http://127.0.0.1:4151/delete_topic')
+  .post('http://127.0.0.1:4151/topic/delete')
   .query({ topic: topic })
   .end(function(err, res){
-    if (err) return fn(err);
-    if (res.error) return fn(res.error);
-    fn();
+    if (err && err.status == 404) err = null;
+    fn(err, res);
+  });
+};
+
+exports.stats = function(topic, channel, fn){
+  request
+  .get('http://127.0.0.1:4151/stats')
+  .query({ format: 'json', topic: topic, channel: channel })
+  .end(function(err, res){
+    if (err) return fn(err)
+    fn(null, res);
   });
 };
 

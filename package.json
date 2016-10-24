@@ -23,6 +23,7 @@
   "devDependencies": {
     "bytes": "~2.4.0",
     "jstrace": "~0.3.0",
+    "lodash.get": "^4.4.2",
     "mocha": "*",
     "should": "*",
     "superagent": "~2.3.0"

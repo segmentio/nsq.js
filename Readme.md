@@ -28,7 +28,7 @@ $ npm install nsq.js
   except fo the framer:
 
 ```
-$ DEBUG=nsq*,-nsq:framer node test
+$ DEBUG=nsq*,-nsq:framer npm test
 
 nsq:reader connect nsqd 0.0.0.0:4150 events/ingestion [5] +0ms
 nsq:connection connect: 0.0.0.0:4150 V2 +0ms

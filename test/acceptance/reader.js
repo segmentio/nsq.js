@@ -1,15 +1,10 @@
 
-var utils = require('../utils');
+require('./hooks');
+
 var assert = require('assert');
 var nsq = require('../..');
 
 describe('Reader', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
-      done();
-    });
-  })
-
   describe('with .nsqd addresses', function(){
     it('should subscribe to messages', function(done){
       var pub = nsq.writer();
@@ -26,7 +21,7 @@ describe('Reader', function(){
 
       sub.once('message', function(msg){
         msg.finish();
-        done();
+        sub.close(done);
       });
     })
   })
@@ -45,9 +40,9 @@ describe('Reader', function(){
             nsqlookupd: ['0.0.0.0:4161']
           });
 
-          sub.on('message', function(msg){
+          sub.once('message', function(msg){
             msg.finish();
-            done();
+            sub.close(done);
           });
         });
       });
@@ -60,7 +55,10 @@ describe('Reader', function(){
         nsqlookupd: ['0.0.0.0:4161']
       });
 
-      assert(sub.timer !== null);
+      setImmediate(function(){
+        assert(sub.timer !== null);
+        sub.close(done);
+      });
     })
   })
 
@@ -71,7 +69,7 @@ describe('Reader', function(){
       topic: 'test',
       channel: 'reader',
       nsqd: ['0.0.0.0:4150'],
-      maxAttempts: 5
+      maxAttempts: 1
     });
 
     pub.on('ready', function(){
@@ -84,18 +82,12 @@ describe('Reader', function(){
 
     sub.once('discard', function(msg){
       sub.removeAllListeners('message');
-      done();
+      sub.close(done);
     });
   })
 })
 
 describe('Reader#close()', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
-      done();
-    });
-  })
-
   it('should wait for pending messages and emit "close"', function(done){
     var pub = nsq.writer();
     var recv = 0;
@@ -128,12 +120,6 @@ describe('Reader#close()', function(){
 })
 
 describe('Reader#close(fn)', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
-      done();
-    });
-  })
-
   it('should wait for pending messages and invoke the callback', function(done){
     var pub = nsq.writer();
     var recv = 0;
@@ -193,12 +179,13 @@ describe('Reader#close(fn)', function(){
       pollInterval: 100
     });
 
-    sub.close();
+    setImmediate(function(){
+      sub.close();
+      sub.lookup = function(fn){
+        done(new Error('setInterval() is still running'));
+      };
+    });
 
     setTimeout(done, 500);
-
-    sub.lookup = function(fn){
-      done(new Error('setInterval() is still running'));
-    };
   })
 })

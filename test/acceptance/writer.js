@@ -1,16 +1,11 @@
 
+require('./hooks');
+
 var Connection = require('../../lib/connection');
-var utils = require('../utils');
 var assert = require('assert');
 var nsq = require('../..');
 
 describe('Writer#publish()', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
-      done();
-    });
-  })
-
   it('should publish messages', function(done){
     var pub = nsq.writer();
     var sub = new Connection;
@@ -26,7 +21,7 @@ describe('Writer#publish()', function(){
 
     sub.on('message', function(msg){
       msg.finish();
-      done();
+      sub.close(done);
     });
 
     sub.connect();
@@ -73,7 +68,7 @@ describe('Writer#publish()', function(){
       pub.publish('test', new Buffer(1024), next);
       pub.close(function(){
         assert(n === 3);
-        done();
+        sub.close(done);
       });
     });
 
@@ -110,7 +105,7 @@ describe('Writer#publish()', function(){
 
         if (++n == 3) {
           msgs.should.eql(['foo', 'bar', 'baz']);
-          done();
+          sub.close(done);
         }
       });
 
@@ -135,7 +130,7 @@ describe('Writer#publish()', function(){
       sub.on('message', function(msg){
         msg.finish();
         msg.body.toString().should.eql('foobar');
-        done();
+        sub.close(done);
       });
 
       sub.connect();

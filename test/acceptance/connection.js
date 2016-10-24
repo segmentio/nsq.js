@@ -1,15 +1,10 @@
 
+require('./hooks');
+
 var Connection = require('../../lib/connection');
 var assert = require('assert');
-var utils = require('../utils');
 
 describe('Connection', function(){
-  beforeEach(function(done){
-    utils.deleteTopic('test', function(){
-      done();
-    });
-  })
-
   it('should identify on connect', function(done){
     var conn = new Connection;
 
@@ -38,7 +33,7 @@ describe('Connection', function(){
 
     sub.on('message', function(msg){
       msg.finish();
-      done();
+      sub.close(done);
     });
 
     pub.connect();

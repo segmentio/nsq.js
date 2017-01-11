@@ -1,4 +1,3 @@
-[![Build Status](https://circleci.com/gh/segmentio/nsq.js.png?circle-token=cedaa77bf0b26477c0ccf9bda78db2233cb08b18)](https://circleci.com/gh/segmentio/nsq.js)
 # nsq.js
 
   JavaScript NSQ client WIP.

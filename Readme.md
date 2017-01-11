@@ -1,5 +1,4 @@
-[![Build Status](https://circleci.com/gh/segmentio/nsq.js.png?circle-token=cedaa77bf0b26477c0ccf9bda78db2233cb08b18)](https://circleci.com/gh/segmentio/nsq.js)
-# nsq.js
+# @uphold/nsq.js
 
   JavaScript NSQ client WIP.
 
@@ -16,7 +15,7 @@
 ## Installation
 
 ```
-$ npm install nsq.js
+$ npm install @uphold/nsq.js
 ```
 
 ## About
@@ -56,7 +55,7 @@ nsq:connection response OK +0ms
 ## Example
 
 ```js
-var nsq = require('nsq.js');
+var nsq = require('@uphold/nsq.js');
 
 // subscribe
 

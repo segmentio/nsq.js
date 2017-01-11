@@ -1,4 +1,4 @@
-# nsq.js
+# @uphold/nsq.js
 
   JavaScript NSQ client WIP.
 
@@ -15,7 +15,7 @@
 ## Installation
 
 ```
-$ npm install nsq.js
+$ npm install @uphold/nsq.js
 ```
 
 ## About
@@ -55,7 +55,7 @@ nsq:connection response OK +0ms
 ## Example
 
 ```js
-var nsq = require('nsq.js');
+var nsq = require('@uphold/nsq.js');
 
 // subscribe
 

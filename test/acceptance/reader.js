@@ -3,6 +3,8 @@ var utils = require('../utils');
 var assert = require('assert');
 var nsq = require('../..');
 var uid = require('uid');
+var Reader = require('../../lib/reader');
+
 
 describe('Reader', function(){
   var topic = uid();
@@ -48,7 +50,7 @@ describe('Reader', function(){
 
         sub.on('done', done);
       });
-    })
+    });
 
     describe('with .nsqlookupd addresses', function(){
       it('should subscribe to messages', function(done){
@@ -83,7 +85,7 @@ describe('Reader', function(){
           done();
         });
       })
-    })
+    });
 
     it('should discard messages after the max attempts', function(done){
       var pub = nsq.writer();

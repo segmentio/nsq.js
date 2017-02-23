@@ -1,17 +1,17 @@
 machine:
   node:
-    version: 0.10.31
+    version: 6.10.0
 
 dependencies:
   pre:
-    - wget https://s3.amazonaws.com/bitly-downloads/nsq/nsq-0.3.6.linux-amd64.go1.5.1.tar.gz
-    - tar xvzf nsq-0.3.6.linux-amd64.go1.5.1.tar.gz
-    - cp nsq-0.3.6.linux-amd64.go1.5.1/bin/* .
+    - wget https://s3.amazonaws.com/bitly-downloads/nsq/nsq-0.3.8.linux-amd64.go1.6.2.tar.gz
+    - tar xvzf nsq-0.3.8.linux-amd64.go1.6.2.tar.gz
+    - cp nsq-0.3.8.linux-amd64.go1.6.2/bin/* .
     - ./nsqlookupd:
         background: true
     - ./nsqd --lookupd-tcp-address=127.0.0.1:4160:
         background: true
   cache_directories:
-    - nsq-0.3.6.linux-amd64.go1.5.1
+    - nsq-0.3.8.linux-amd64.go1.6.2
   override:
     - npm install

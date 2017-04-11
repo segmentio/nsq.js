@@ -39,7 +39,7 @@ describe('Message#finish()', function(){
 
     var msg = new Message(body, conn);
     assert(!msg.responded);
-    msg.finish(done);
+    msg.finish();
     assert(msg.responded);
   })
 })
@@ -56,7 +56,7 @@ describe('Message#touch()', function(){
 
     var msg = new Message(body, conn);
     assert(!msg.responded);
-    msg.touch(done);
+    msg.touch();
     assert(!msg.responded);
   })
 
@@ -92,7 +92,7 @@ describe('Message#reqeue()', function(){
 
     var msg = new Message(body, conn);
     assert(!msg.responded);
-    msg.requeue(null, done);
+    msg.requeue();
     assert(msg.responded);
   })
 })
@@ -110,7 +110,7 @@ describe('Message#reqeue(delay)', function(){
 
     var msg = new Message(body, conn);
     assert(!msg.responded);
-    msg.requeue(5000, done);
+    msg.requeue(5000);
     assert(msg.responded);
   })
 })

@@ -26,8 +26,7 @@ describe('Reader', function(){
         });
 
         sub.on('message', function(msg){
-          msg.finish();
-          done();
+          msg.finish(done);
         });
 
         pub.on('ready', function(){
@@ -62,8 +61,7 @@ describe('Reader', function(){
           pollInterval: 100
         });
         sub.on('message', function(msg){
-          msg.finish();
-          done();
+          msg.finish(done);
         });
 
         pub.on('ready', function(){
@@ -108,8 +106,35 @@ describe('Reader', function(){
       pub.on('ready', function(){
         pub.publish(topic, 'something');
       });
-    })
-  })
+    });
+
+    it('should re-receive the message after calling requeue', function(done){
+      var pub = nsq.writer();
+      var sub = nsq.reader({
+        topic: topic,
+        channel: 'reader',
+        nsqd: ['0.0.0.0:4150'],
+        maxAttempts: 5,
+      });
+
+      var attempts = 1;
+      sub.on('message', function(msg){
+        assert.equal(attempts, msg.attempts);
+
+        if (attempts === 1) {
+          msg.requeue(null, function(err) { assert(!err); });
+        } else {
+          msg.finish(done);
+        }
+
+        ++attempts;
+      });
+
+      pub.on('ready', function(){
+        pub.publish(topic, 'something');
+      });
+    });
+  });
 
   describe('Reader#close()', function(){
     var topic = uid();

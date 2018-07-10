@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "backo": "~1.0.1",
-    "bignum": "~0.12.5",
+    "bignum": "~0.13.0",
     "debug": "~0.7.4",
     "ms": "^2.1.1",
     "node-int64": "~0.3.0",

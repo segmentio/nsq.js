@@ -14,7 +14,7 @@
   "dependencies": {
     "backo": "~1.0.1",
     "bignum": "~0.12.5",
-    "debug": "~0.7.4",
+    "debug": "~0.8.1",
     "ms": "^2.1.1",
     "node-int64": "~0.3.0",
     "nsq-lookup": "~3.0.0",
